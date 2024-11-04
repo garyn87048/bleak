@@ -1188,8 +1188,7 @@ def uuidstr_to_str(uuid_: str) -> str:
     if (v & 0xFFFF0000) == 0x0000:
         s = uuid16_dict.get(v & 0x0000FFFF, s)
     if not s:
-        return "["+str(uuid_)+"]"
-####        return "Unknown"
+        return str(uuid_)
 
     return s
 
