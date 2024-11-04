@@ -145,6 +145,7 @@ class BleakScanner:
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
+        print( "gmn edits" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
