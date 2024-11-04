@@ -409,6 +409,7 @@ class BleakScanner:
 
         .. versionadded:: 0.20
         """
+        print( "in find_device_by_name" )
         return await cls.find_device_by_filter(
             lambda d, ad: ad.local_name == name,
             timeout=timeout,
