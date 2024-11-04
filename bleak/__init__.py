@@ -146,7 +146,6 @@ class BleakScanner:
         )
 
         print( "gmn edits" )
-        logger.error( "test message" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -387,7 +386,6 @@ class BleakScanner:
 
         """
         print( "in find_device_by_address" )
-        logger.error( "in find_device_by_address" )
         device_identifier = device_identifier.lower()
         return await cls.find_device_by_filter(
             lambda d, ad: d.address.lower() == device_identifier,
