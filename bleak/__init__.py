@@ -385,6 +385,7 @@ class BleakScanner:
             The ``BLEDevice`` sought or ``None`` if not detected.
 
         """
+        print( "in find_device_by_address" )
         device_identifier = device_identifier.lower()
         return await cls.find_device_by_filter(
             lambda d, ad: d.address.lower() == device_identifier,
