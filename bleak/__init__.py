@@ -145,7 +145,7 @@ class BleakScanner:
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
-        print( "in __init__, gmn branch figure_it_out" )
+        print( f"in __init__, gmn branch figure_it_out, service_uuids={service_uuids}" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
