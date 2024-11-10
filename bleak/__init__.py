@@ -145,7 +145,7 @@ class BleakScanner:
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
-        print( "gmn edits" )
+        print( "in __init__, gmn branch figure_it_out" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -385,7 +385,7 @@ class BleakScanner:
             The ``BLEDevice`` sought or ``None`` if not detected.
 
         """
-        print( "in find_device_by_address" )
+        print( "in __init__, find_device_by_address" )
         device_identifier = device_identifier.lower()
         return await cls.find_device_by_filter(
             lambda d, ad: d.address.lower() == device_identifier,
@@ -409,7 +409,7 @@ class BleakScanner:
 
         .. versionadded:: 0.20
         """
-        print( "in find_device_by_name" )
+        print( "in __init__, find_device_by_name" )
         return await cls.find_device_by_filter(
             lambda d, ad: ad.local_name == name,
             timeout=timeout,
