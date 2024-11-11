@@ -120,7 +120,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         bluez: BlueZScannerArgs,
         **kwargs,
     ):
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter" )
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter, service_uuid={service_uuids}" )
         
         super(BleakScannerBlueZDBus, self).__init__(detection_callback, service_uuids)
 
@@ -141,11 +141,15 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
 
         if self._service_uuids:
             self._filters["UUIDs"] = Variant("as", self._service_uuids)
+        print( "self._filters['UUIDs']=%s" % self._filters["UUIDs"] )
 
         filters = kwargs.get("filters")
+        print( "filters=%s" % filters )
 
         if filters is None:
+            print( "filters was none" )
             filters = bluez.get("filters")
+            print( "filters, bluez.get(filters)=%s" % filters )
         else:
             warn(
                 "the 'filters' kwarg is deprecated, use 'bluez' kwarg instead",
