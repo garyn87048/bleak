@@ -136,7 +136,7 @@ class BaseBleakScanner(abc.ABC):
     ):
         super(BaseBleakScanner, self).__init__()
 
-        print( "in \\bleak\\bleak\\backends\\scanner, __init__" )
+        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter" )
 
         self._ad_callbacks: Dict[
             Hashable, Callable[[BLEDevice, AdvertisementData], None]
@@ -153,6 +153,7 @@ class BaseBleakScanner(abc.ABC):
         )
 
         self.seen_devices = {}
+        print( "in \\bleak\\bleak\\backends\\scanner, __init__, exit" )
 
     def register_detection_callback(
         self, callback: Optional[AdvertisementDataCallback]
