@@ -178,6 +178,8 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         else:
             adapter_path = manager.get_default_adapter()
 
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, start, adapter_path={adapter_path}, scan_mode={self._scanning_mode}" )
+        
         self.seen_devices = {}
 
         if self._scanning_mode == "passive":
