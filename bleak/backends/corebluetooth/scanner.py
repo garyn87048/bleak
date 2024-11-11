@@ -65,11 +65,11 @@ class BleakScannerCoreBluetooth(BaseBleakScanner):
         cb: CBScannerArgs,
         **kwargs
     ):
+        print( "in \\bleak\\bleak\\backends\\corebluetooth\\scanner, __init__" )
+        
         super(BleakScannerCoreBluetooth, self).__init__(
             detection_callback, service_uuids
         )
-        
-        print( "in \\bleak\\bleak\\backends\\corebluetooth\\scanner, __init__" )
         
         self._use_bdaddr = cb.get("use_bdaddr", False)
 
