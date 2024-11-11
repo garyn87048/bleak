@@ -260,6 +260,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
 
         # Get all the information wanted to pack in the advertisement data
         _local_name = props.get("Name")
+        print( "_service_uuids=%s, _local_name=%s" % (_service_uuids, _local_name) )
         _manufacturer_data = {
             k: bytes(v) for k, v in props.get("ManufacturerData", {}).items()
         }
