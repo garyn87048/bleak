@@ -136,6 +136,8 @@ class BaseBleakScanner(abc.ABC):
     ):
         super(BaseBleakScanner, self).__init__()
 
+        print( "in \bleak\bleak\backends\scanner, __init__" )
+
         self._ad_callbacks: Dict[
             Hashable, Callable[[BLEDevice, AdvertisementData], None]
         ] = {}
