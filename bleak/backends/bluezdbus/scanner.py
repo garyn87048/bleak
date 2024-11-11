@@ -122,7 +122,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
     ):
         super(BleakScannerBlueZDBus, self).__init__(detection_callback, service_uuids)
 
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter" )
         
         self._scanning_mode = scanning_mode
 
@@ -165,6 +165,9 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
 
         if self._scanning_mode == "passive" and not self._or_patterns:
             raise BleakError("passive scanning mode requires bluez or_patterns")
+            
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, exit" )
+        
 
     async def start(self) -> None:
         manager = await get_global_bluez_manager()

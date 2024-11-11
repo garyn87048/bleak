@@ -141,11 +141,13 @@ class BleakScanner:
         backend: Optional[Type[BaseBleakScanner]] = None,
         **kwargs,
     ) -> None:
+    
+        print( f"in \\bleak\\bleak\\__init__, __init__, enter, service_uuids={service_uuids}" )
+        
         PlatformBleakScanner = (
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
-        print( f"in \\bleak\\bleak\\__init__, __init__, service_uuids={service_uuids}" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -154,6 +156,7 @@ class BleakScanner:
             cb=cb,
             **kwargs,
         )
+        print( f"in \\bleak\\bleak\\__init__, __init__, exit" )
 
     async def __aenter__(self) -> BleakScanner:
         await self._backend.start()
