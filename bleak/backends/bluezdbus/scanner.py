@@ -122,6 +122,8 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
     ):
         super(BleakScannerBlueZDBus, self).__init__(detection_callback, service_uuids)
 
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__" )
+        
         self._scanning_mode = scanning_mode
 
         # kwarg "device" is for backwards compatibility
