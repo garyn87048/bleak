@@ -141,7 +141,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
 
         if self._service_uuids:
             self._filters["UUIDs"] = Variant("as", self._service_uuids)
-        print( "self._filters['UUIDs']=%s" % self._filters["UUIDs"] )
+            print( "self._filters['UUIDs']=%s" % self._filters["UUIDs"] )
 
         filters = kwargs.get("filters")
         print( "filters-1=%s" % filters )
