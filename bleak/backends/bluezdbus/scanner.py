@@ -170,6 +170,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         
 
     async def start(self) -> None:
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, start, enter" )
         manager = await get_global_bluez_manager()
 
         if self._adapter:
@@ -195,6 +196,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             )
 
     async def stop(self) -> None:
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, stop, enter" )
         if self._stop:
             # avoid reentrancy
             stop, self._stop = self._stop, None
@@ -214,6 +216,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             filters (dict): A dict of filters to be applied on discovery.
 
         """
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, set_scanning_filter, enter" )
         for k, v in kwargs.get("filters", {}).items():
             if k == "UUIDs":
                 self._filters[k] = Variant("as", v)
@@ -242,6 +245,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             path: The D-Bus object path of the device.
             props: The D-Bus object properties of the device.
         """
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, handle_advertising_data, enter" )
         _service_uuids = props.get("UUIDs", [])
 
         if not self.is_allowed_uuid(_service_uuids):
@@ -281,6 +285,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         """
         Handles a device being removed from BlueZ.
         """
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, _handle_device_removed, enter" )
         try:
             bdaddr = bdaddr_from_device_path(device_path)
             del self.seen_devices[bdaddr]
