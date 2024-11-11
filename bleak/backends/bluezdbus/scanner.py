@@ -144,7 +144,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         print( "self._filters['UUIDs']=%s" % self._filters["UUIDs"] )
 
         filters = kwargs.get("filters")
-        print( "filters=%s" % filters )
+        print( "filters-1=%s" % filters )
 
         if filters is None:
             print( "filters was none" )
@@ -157,6 +157,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
                 stacklevel=2,
             )
 
+        print( "filters-2=%s" % filters )
         if filters is not None:
             self.set_scanning_filter(filters=filters)
 
