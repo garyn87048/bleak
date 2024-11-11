@@ -68,7 +68,9 @@ class BleakScannerCoreBluetooth(BaseBleakScanner):
         super(BleakScannerCoreBluetooth, self).__init__(
             detection_callback, service_uuids
         )
-
+        
+        print( "in scanner, __init__" )
+        
         self._use_bdaddr = cb.get("use_bdaddr", False)
 
         if scanning_mode == "passive":
