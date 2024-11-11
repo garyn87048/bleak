@@ -314,6 +314,8 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
     """
     Gets the platform-specific :class:`BaseBleakScanner` type.
     """
+    print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type" )
+
     if os.environ.get("P4A_BOOTSTRAP") is not None:
         from bleak.backends.p4android.scanner import BleakScannerP4Android
 
@@ -321,6 +323,8 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
 
     if platform.system() == "Linux":
         from bleak.backends.bluezdbus.scanner import BleakScannerBlueZDBus
+        
+        print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type, selected linux" )
 
         return BleakScannerBlueZDBus
 

@@ -145,7 +145,7 @@ class BleakScanner:
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
-        print( f"in __init__, gmn branch figure_it_out, service_uuids={service_uuids}" )
+        print( f"in \\bleak\\bleak\\__init__, __init__, service_uuids={service_uuids}" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -909,6 +909,8 @@ def discover(*args, **kwargs):
 def cli() -> None:
     import argparse
 
+    print( "in \\bleak\\bleak\\__init__, cli()" )
+    
     parser = argparse.ArgumentParser(
         description="Perform Bluetooth Low Energy device scan"
     )
