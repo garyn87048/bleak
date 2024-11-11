@@ -142,7 +142,7 @@ class BleakScanner:
         **kwargs,
     ) -> None:
     
-        print( f"in \\bleak\\bleak\\__init__, __init__, enter, service_uuids={service_uuids}" )
+        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner enter, service_uuids={service_uuids}" )
         
         PlatformBleakScanner = (
             get_platform_scanner_backend_type() if backend is None else backend
@@ -321,12 +321,15 @@ class BleakScanner:
         .. versionchanged:: 0.19
             Added ``return_adv`` parameter.
         """
+        print( "in \\bleak\\bleak\\__init__, discover, enter, calling scanner" )
         async with cls(**kwargs) as scanner:
             await asyncio.sleep(timeout)
 
         if return_adv:
+            print( "in \\bleak\\bleak\\__init__, discover, return_adv" )
             return scanner.discovered_devices_and_advertisement_data
 
+        print( "in \\bleak\\bleak\\__init__, discover, return normal" )
         return scanner.discovered_devices
 
     @property
@@ -388,7 +391,7 @@ class BleakScanner:
             The ``BLEDevice`` sought or ``None`` if not detected.
 
         """
-        print( "in __init__, find_device_by_address" )
+        print( "in \\bleak\\bleak\\__init__, find_device_by_address" )
         device_identifier = device_identifier.lower()
         return await cls.find_device_by_filter(
             lambda d, ad: d.address.lower() == device_identifier,
@@ -412,7 +415,7 @@ class BleakScanner:
 
         .. versionadded:: 0.20
         """
-        print( "in __init__, find_device_by_name" )
+        print( "in \\bleak\\bleak\\__init__, find_device_by_name" )
         return await cls.find_device_by_filter(
             lambda d, ad: ad.local_name == name,
             timeout=timeout,
@@ -523,6 +526,7 @@ class BleakClient:
         backend: Optional[Type[BaseBleakClient]] = None,
         **kwargs,
     ) -> None:
+        print( "in \\bleak\\bleak\\__init__, BleakClient __init__, enter" )
         PlatformBleakClient = (
             get_platform_client_backend_type() if backend is None else backend
         )
