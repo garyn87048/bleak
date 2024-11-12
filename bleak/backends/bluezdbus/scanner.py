@@ -195,6 +195,9 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
                 self._handle_device_removed,
             )
         else:
+            print( f"==>> about to active scan, filters={self._filters}" )
+            print( f"==>> _handle_advertising_data={self._handle_advertising_data}" )
+            print( f"==>> _handle_device_removed={self._handle_device_removed}" )
             self._stop = await manager.active_scan(
                 adapter_path,
                 self._filters,

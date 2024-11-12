@@ -384,6 +384,8 @@ class BlueZManager:
         Raises:
             BleakError: if the adapter is not present in BlueZ
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, active_scan, enter" )
+        
         async with self._bus_lock:
             # If the adapter doesn't exist, then the message calls below would
             # fail with "method not found". This provides a more informative
