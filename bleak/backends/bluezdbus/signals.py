@@ -71,6 +71,7 @@ class MatchRules:
         arg0namespace: Optional[str] = None,
         **kwargs,
     ):
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\signal, class __init__, enter" )
         assert_bus_name_valid(type)
         self.type: str = type
 
@@ -138,9 +139,12 @@ class MatchRules:
 
     @staticmethod
     def parse(rules: str) -> MatchRules:
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\signal, parse, enter&exit" )
         return MatchRules(**dict(r.split("=") for r in rules.split(",")))
 
     def __str__(self) -> str:
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\signal, __str__, enter" )
+
         rules = [f"type={self.type}"]
 
         if self.sender:
@@ -176,6 +180,7 @@ class MatchRules:
 
 def add_match(bus: MessageBus, rules: MatchRules) -> Coroutine[Any, Any, Message]:
     """Calls org.freedesktop.DBus.AddMatch using ``rules``."""
+    print( f"in \\bleak\\bleak\\backends\\bluezdbus\\signal, add_match (not part of class), enter" )
     return bus.call(
         Message(
             destination="org.freedesktop.DBus",
@@ -190,6 +195,7 @@ def add_match(bus: MessageBus, rules: MatchRules) -> Coroutine[Any, Any, Message
 
 def remove_match(bus: MessageBus, rules: MatchRules) -> Coroutine[Any, Any, Message]:
     """Calls org.freedesktop.DBus.RemoveMatch using ``rules``."""
+    print( f"in \\bleak\\bleak\\backends\\bluezdbus\\signal, remove_match (not part of class), enter" )
     return bus.call(
         Message(
             destination="org.freedesktop.DBus",
