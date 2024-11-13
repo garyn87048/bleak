@@ -72,6 +72,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
         services: Optional[Set[str]] = None,
         **kwargs,
     ):
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, class __init__, enter" )
         super(BleakClientBlueZDBus, self).__init__(address_or_ble_device, **kwargs)
         # kwarg "device" is for backwards compatibility
         self._adapter: Optional[str] = kwargs.get("adapter", kwargs.get("device"))
@@ -118,6 +119,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
             BleakDBusError: If there was a D-Bus error
             asyncio.TimeoutError: If the connection timed out
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, connect, enter" )
         logger.debug("Connecting to device @ %s", self.address)
 
         if self.is_connected:
@@ -327,6 +329,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
         # if a run loop is stopped before the device is disconnected since this
         # task will still be running and asyncio complains if a loop with running
         # tasks is stopped.
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, _disconnect_monitor, enter" )
         try:
             await disconnect_monitor_event.wait()
         except asyncio.CancelledError:
@@ -350,6 +353,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
         Free all the allocated resource in DBus. Use this method to
         eventually cleanup all otherwise leaked resources.
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, _cleanup_all, enter" )
         logger.debug("_cleanup_all(%s)", self._device_path)
 
         if self._remove_device_watcher:
@@ -388,6 +392,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
             BleakDBusError: If there was a D-Bus error
             asyncio.TimeoutError if the device was not disconnected within 10 seconds
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, disconnect, enter" )
         logger.debug("Disconnecting ({%s})", self._device_path)
 
         if self._bus is None:
@@ -437,6 +442,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
 
         """
         # See if it is already paired.
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, pair, enter" )
         reply = await self._bus.call(
             Message(
                 destination=defs.BLUEZ_SERVICE,
@@ -498,6 +504,7 @@ class BleakClientBlueZDBus(BaseBleakClient):
             Boolean regarding success of unpairing.
 
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\client, unpair, enter" )
         adapter_path = await self._get_adapter_path()
         device_path = await self._get_device_path()
         manager = await get_global_bluez_manager()
