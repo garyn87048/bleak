@@ -162,6 +162,8 @@ class BlueZManager:
         self._bus: Optional[MessageBus] = None
         self._bus_lock = asyncio.Lock()
 
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, __init__, enter" )
+        
         # dict of object path: dict of interface name: dict of property name: property value
         self._properties: Dict[str, Dict[str, Dict[str, Any]]] = {}
 
@@ -191,6 +193,7 @@ class BlueZManager:
         Raises:
             BleakError: if adapter is not present in BlueZ
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, _check_adapter, enter" )
         if adapter_path not in self._properties:
             raise BleakError(f"adapter '{adapter_path.split('/')[-1]}' not found")
 
@@ -199,12 +202,15 @@ class BlueZManager:
         Raises:
             BleakError: if device is not present in BlueZ
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, _check_device, enter" )
         if device_path not in self._properties:
             raise BleakError(f"device '{device_path.split('/')[-1]}' not found")
 
     def _get_device_property(
         self, device_path: str, interface: str, property_name: str
     ) -> Any:
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, _get_device_property, enter" )
+
         self._check_device(device_path)
         device_properties = self._properties[device_path]
 
@@ -231,6 +237,8 @@ class BlueZManager:
         It is safe to call this method multiple times. If the bus is already
         connected, no action is performed.
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, async_init, enter" )
+        
         async with self._bus_lock:
             if self._bus and self._bus.connected:
                 return
@@ -349,6 +357,7 @@ class BlueZManager:
             BleakError:
                 if there are no Bluetooth adapters or if none of the adapters are powered
         """
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, get_default_adapter, enter" )
         if not any(self._adapters):
             raise BleakError("No Bluetooth adapters found.")
 
@@ -401,6 +410,7 @@ class BlueZManager:
 
             try:
                 # Apply the filters
+                print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, active_scan, apply filters" )
                 reply = await self._bus.call(
                     Message(
                         destination=defs.BLUEZ_SERVICE,
@@ -414,6 +424,7 @@ class BlueZManager:
                 assert_reply(reply)
 
                 # Start scanning
+                print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, active_scan, start scanning" )
                 reply = await self._bus.call(
                     Message(
                         destination=defs.BLUEZ_SERVICE,
@@ -428,6 +439,7 @@ class BlueZManager:
                     # need to remove callbacks first, otherwise we get TxPower
                     # and RSSI properties removed during stop which causes
                     # incorrect advertisement data callbacks
+                    print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, active_scan, stop (inside of active scan)" )
                     self._advertisement_callbacks[adapter_path].remove(
                         advertisement_callback
                     )
@@ -467,6 +479,7 @@ class BlueZManager:
                 return stop
             except BaseException:
                 # if starting scanning failed, don't leak the callbacks
+                print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, active_scan, BaseException" )
                 self._advertisement_callbacks[adapter_path].remove(
                     advertisement_callback
                 )
