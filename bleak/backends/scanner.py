@@ -151,13 +151,14 @@ class BaseBleakScanner(abc.ABC):
             print( "in \\bleak\\bleak\\backends\\scanner, __init__, detection_callback is not None" )
             self.register_detection_callback(detection_callback)
 
+        if( self._service_uuids is None ):
+            print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is None" )
+        else:
+            print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is not None" )
         self._service_uuids: Optional[List[str]] = (
-            if( self._service_uuids is None ):
-                print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is None" )
-            else:
-                print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is not None" )
             [u.lower() for u in service_uuids] if service_uuids is not None else None
         )
+        print( f"==>> self._service_uuids={self._service_uuids}" )
 
         self.seen_devices = {}
         print( "in \\bleak\\bleak\\backends\\scanner, __init__, exit" )
