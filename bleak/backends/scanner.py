@@ -152,10 +152,10 @@ class BaseBleakScanner(abc.ABC):
             self.register_detection_callback(detection_callback)
 
         self._service_uuids: Optional[List[str]] = (
-            if( service_uuids is None ):
-                print( "in \\bleak\\bleak\\backends\\scanner, __init__, service_uuids is None" )
+            if( self._service_uuids is None ):
+                print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is None" )
             else:
-                print( "in \\bleak\\bleak\\backends\\scanner, __init__, service_uuids is not None" )
+                print( "in \\bleak\\bleak\\backends\\scanner, __init__, self._service_uuids is not None" )
             [u.lower() for u in service_uuids] if service_uuids is not None else None
         )
 
