@@ -120,9 +120,11 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         bluez: BlueZScannerArgs,
         **kwargs,
     ):
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter, service_uuid={service_uuids}" )
-        
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter" )
+        print( f"==>> service_uuid={service_uuids}" )
+        print( f"==>> calling super(BleakScannerBlueZDBus init" )
         super(BleakScannerBlueZDBus, self).__init__(detection_callback, service_uuids)
+        print( f"==>> returned from super(BleakScannerBlueZDBus init" )
 
         self._scanning_mode = scanning_mode
 
@@ -263,7 +265,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
 
         # Get all the information wanted to pack in the advertisement data
         _local_name = props.get("Name")
-        print( "_service_uuids=%s, _local_name=%s" % (_service_uuids, _local_name) )
+        print( "==>> _service_uuids=%s, _local_name=%s" % (_service_uuids, _local_name) )
         _manufacturer_data = {
             k: bytes(v) for k, v in props.get("ManufacturerData", {}).items()
         }

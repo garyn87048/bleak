@@ -134,10 +134,12 @@ class BaseBleakScanner(abc.ABC):
         detection_callback: Optional[AdvertisementDataCallback],
         service_uuids: Optional[List[str]],
     ):
-        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter" )
+        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter, before super(BaseBleakScanner" )
 
         super(BaseBleakScanner, self).__init__()
 
+        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter, after super(BaseBleakScanner" )
+        
         self._ad_callbacks: Dict[
             Hashable, Callable[[BLEDevice, AdvertisementData], None]
         ] = {}
@@ -326,6 +328,7 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
         from bleak.backends.bluezdbus.scanner import BleakScannerBlueZDBus
         
         print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type, selected linux" )
+        print( "==>> import BleakScannerBlueZDBus" )
 
         return BleakScannerBlueZDBus
 

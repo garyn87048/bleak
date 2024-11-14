@@ -142,12 +142,15 @@ class BleakScanner:
         **kwargs,
     ) -> None:
     
-        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner enter, service_uuids={service_uuids}" )
+        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner enter" )
+        print( f"==>> service_uuids={service_uuids}" )
         
+        print( "==>> calling \\bleak\\bleak\\backends\\scanner\\get_platform_scanner_backend_type" )
         PlatformBleakScanner = (
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
+        print( f"in \\bleak\\bleak\\__init__, __init__, calling PlatformBleakScanner (the one in bluezdbux)" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -324,6 +327,7 @@ class BleakScanner:
         print( "in \\bleak\\bleak\\__init__, discover, enter, calling scanner" )
         async with cls(**kwargs) as scanner:
             await asyncio.sleep(timeout)
+        print( "in \\bleak\\bleak\\__init__, discover, enter, returned from scanner" )
 
         if return_adv:
             print( "in \\bleak\\bleak\\__init__, discover, return_adv" )
