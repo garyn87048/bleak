@@ -148,9 +148,14 @@ class BaseBleakScanner(abc.ABC):
         """
 
         if detection_callback is not None:
+            print( "in \\bleak\\bleak\\backends\\scanner, __init__, detection_callback is not None" )
             self.register_detection_callback(detection_callback)
 
         self._service_uuids: Optional[List[str]] = (
+            if( service_uuids is None ):
+                print( "in \\bleak\\bleak\\backends\\scanner, __init__, service_uuids is None" )
+            else:
+                print( "in \\bleak\\bleak\\backends\\scanner, __init__, service_uuids is not None" )
             [u.lower() for u in service_uuids] if service_uuids is not None else None
         )
 
@@ -322,6 +327,9 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
     if os.environ.get("P4A_BOOTSTRAP") is not None:
         from bleak.backends.p4android.scanner import BleakScannerP4Android
 
+        print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type, selected android" )
+        print( "==>> import BleakScannerP4Android" )
+
         return BleakScannerP4Android
 
     if platform.system() == "Linux":
@@ -335,10 +343,16 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
     if platform.system() == "Darwin":
         from bleak.backends.corebluetooth.scanner import BleakScannerCoreBluetooth
 
+        print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type, selected BleakScannerCoreBluetooth" )
+        print( "==>> import BleakScannerCoreBluetooth" )
+
         return BleakScannerCoreBluetooth
 
     if platform.system() == "Windows":
         from bleak.backends.winrt.scanner import BleakScannerWinRT
+
+        print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type, selected winrt" )
+        print( "==>> import BleakScannerWinRT" )
 
         return BleakScannerWinRT
 

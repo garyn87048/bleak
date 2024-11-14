@@ -324,7 +324,9 @@ class BleakScanner:
         .. versionchanged:: 0.19
             Added ``return_adv`` parameter.
         """
-        print( "in \\bleak\\bleak\\__init__, discover, enter, calling scanner" )
+        print( "in \\bleak\\bleak\\__init__, discover, enter" )
+        print( "==>> this is BleakScanner.discover, calling 'scanner' here \\bleak\\bleak\\backends\\" )
+        
         async with cls(**kwargs) as scanner:
             await asyncio.sleep(timeout)
         print( "in \\bleak\\bleak\\__init__, discover, enter, returned from scanner" )
