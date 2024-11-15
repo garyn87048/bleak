@@ -1,3 +1,4 @@
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, start imports" )
 import logging
 from typing import Callable, Coroutine, Dict, List, Literal, Optional, TypedDict
 from warnings import warn
@@ -12,6 +13,7 @@ from .manager import get_global_bluez_manager
 from .utils import bdaddr_from_device_path
 
 logger = logging.getLogger(__name__)
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, end imports" )
 
 
 class BlueZDiscoveryFilters(TypedDict, total=False):
