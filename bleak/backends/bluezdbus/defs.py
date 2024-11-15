@@ -1,3 +1,4 @@
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\def, start imports" )
 # -*- coding: utf-8 -*-
 
 from typing import Dict, List, Literal, Tuple, TypedDict
@@ -21,6 +22,7 @@ GATT_SERVICE_INTERFACE = "org.bluez.GattService1"
 GATT_CHARACTERISTIC_INTERFACE = "org.bluez.GattCharacteristic1"
 GATT_DESCRIPTOR_INTERFACE = "org.bluez.GattDescriptor1"
 
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\def, end imports" )
 
 # D-Bus properties for interfaces
 # https://github.com/bluez/bluez/blob/master/doc/org.bluez.Adapter.rst

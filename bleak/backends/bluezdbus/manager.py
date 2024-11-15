@@ -1,3 +1,4 @@
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, start imports" )
 """
 BlueZ D-Bus manager module
 --------------------------
@@ -62,6 +63,7 @@ A callback that is called when the properties of a device change in BlueZ.
 Args:
     arg0: The new property value.
 """
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, end imports" )
 
 
 class DeviceConditionCallback(NamedTuple):

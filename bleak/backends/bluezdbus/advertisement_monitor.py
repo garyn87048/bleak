@@ -1,3 +1,4 @@
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\advertisement_monitor, start imports" )
 """
 Advertisement Monitor
 ---------------------
@@ -15,6 +16,7 @@ from ...assigned_numbers import AdvertisementDataType
 from . import defs
 
 logger = logging.getLogger(__name__)
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\advertisement_monitor, end imports" )
 
 
 class OrPattern(NamedTuple):
@@ -51,14 +53,17 @@ class AdvertisementMonitor(ServiceInterface):
         self,
         or_patterns: Iterable[OrPatternLike],
     ):
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\advertisement_monitor, AdvertisementMonitor, __init__ enter" )
         """
         Args:
             or_patterns:
                 List of or patterns that will be returned by the ``Patterns`` property.
         """
         super().__init__(defs.ADVERTISEMENT_MONITOR_INTERFACE)
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\advertisement_monitor, AdvertisementMonitor, __init__, after calling super().__init__(defs.ADVERTISEMENT_MONITOR_INTERFACE" )
         # dbus_fast marshaling requires list instead of tuple
         self._or_patterns = [list(p) for p in or_patterns]
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\advertisement_monitor, AdvertisementMonitor, __init__ exit" )
 
     @method()
     def Release(self):
