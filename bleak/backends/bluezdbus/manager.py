@@ -28,22 +28,20 @@ from weakref import WeakKeyDictionary
 print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 1" )
 
 from dbus_fast import BusType, Message, MessageType, Variant, unpack_variants
-from dbus_fast.aio.message_bus import MessageBus
-
 print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 2" )
+from dbus_fast.aio.message_bus import MessageBus
+print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 3" )
+
 from ...exc import BleakDBusError, BleakError
 from ..service import BleakGATTServiceCollection
 from . import defs
-print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 3" )
 
 from .advertisement_monitor import AdvertisementMonitor, OrPatternLike
 from .characteristic import BleakGATTCharacteristicBlueZDBus
 from .defs import Device1, GattCharacteristic1, GattDescriptor1, GattService1
-print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 4" )
 from .descriptor import BleakGATTDescriptorBlueZDBus
 from .service import BleakGATTServiceBlueZDBus
 from .signals import MatchRules, add_match
-print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, imports, marker 5" )
 
 from .utils import (
     assert_reply,
