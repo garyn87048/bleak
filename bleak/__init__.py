@@ -7,6 +7,8 @@ from __future__ import annotations
 __author__ = """Henrik Blidh"""
 __email__ = "henrik.blidh@gmail.com"
 
+print( "in \\bleak\\bleak\\__init__, start running code during import" )
+print( "==>> todo, need to track down all the things that are getting started in here" )
 import asyncio
 import functools
 import inspect
@@ -35,14 +37,18 @@ from typing import (
 from warnings import warn
 
 if sys.version_info < (3, 12):
+    print( "==>> sys.version_info < (3, 12), so 'from typing_extensions import Buffer'" )
     from typing_extensions import Buffer
 else:
+    print( "==>> sys.version_info >= (3, 12), so 'from collections.abc import Buffer'" )
     from collections.abc import Buffer
 
 if sys.version_info < (3, 11):
+    print( "==>> sys.version_info < (3, 11), so 'from async_timeout import timeout as async_timeout' and 'from typing_extensions import Unpack'" )
     from async_timeout import timeout as async_timeout
     from typing_extensions import Unpack
 else:
+    print( "==>> sys.version_info >= (3, 11), so 'from asyncio import timeout as async_timeout' and 'from typing import Unpack'" )
     from asyncio import timeout as async_timeout
     from typing import Unpack
 
@@ -65,7 +71,7 @@ if TYPE_CHECKING:
     from .backends.corebluetooth.scanner import CBScannerArgs
     from .backends.winrt.client import WinRTClientArgs
 
-
+print( "==>> starting logging" )
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
 if bool(os.environ.get("BLEAK_LOGGING", False)):
@@ -79,6 +85,7 @@ if bool(os.environ.get("BLEAK_LOGGING", False)):
 
 # prevent tasks from being garbage collected
 _background_tasks: Set[asyncio.Task] = set()
+print( "in \\bleak\\bleak\\__init__, end running code during import" )
 
 
 class BleakScanner:

@@ -82,6 +82,7 @@ class BleakGATTServiceCollection:
     """Simple data container for storing the peripheral's service complement."""
 
     def __init__(self) -> None:
+        print( "in \\bleak\\bleak\\backends\\BleakGATTServiceCollection, __init__" )
         self.__services = {}
         self.__characteristics = {}
         self.__descriptors = {}

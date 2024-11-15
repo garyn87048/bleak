@@ -43,6 +43,7 @@ class BaseBleakClient(abc.ABC):
     """
 
     def __init__(self, address_or_ble_device: Union[BLEDevice, str], **kwargs):
+        print( "in \\bleak\\bleak\\backends\\BaseBleakClient, __init__" )
         if isinstance(address_or_ble_device, BLEDevice):
             self.address = address_or_ble_device.address
         else:

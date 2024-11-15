@@ -39,6 +39,7 @@ class BleakGATTCharacteristic(abc.ABC):
                 The maximum size in bytes that can be written to the
                 characteristic in a single write without response command.
         """
+        print( "in \\bleak\\bleak\\backends\\BleakGATTCharacteristic, __init__" )
         self.obj = obj
         self._max_write_without_response_size = max_write_without_response_size
 
