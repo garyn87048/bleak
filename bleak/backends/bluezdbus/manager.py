@@ -161,11 +161,11 @@ class BlueZManager:
     """
 
     def __init__(self):
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, __init__, enter" )
+        
         self._bus: Optional[MessageBus] = None
         self._bus_lock = asyncio.Lock()
 
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, __init__, enter" )
-        
         # dict of object path: dict of interface name: dict of property name: property value
         self._properties: Dict[str, Dict[str, Dict[str, Any]]] = {}
 
@@ -189,6 +189,7 @@ class BlueZManager:
         self._device_watchers: Dict[str, Set[DeviceWatcher]] = {}
         self._condition_callbacks: Dict[str, Set[DeviceConditionCallback]] = {}
         self._services_cache: Dict[str, BleakGATTServiceCollection] = {}
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\manager, __init__, exit" )
 
     def _check_adapter(self, adapter_path: str) -> None:
         """
