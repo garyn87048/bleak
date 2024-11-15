@@ -1,3 +1,4 @@
+print( "in \\bleak\\bleak\\backends\\scanner, start running the imports" )
 import abc
 import asyncio
 import inspect
@@ -22,7 +23,7 @@ from .device import BLEDevice
 
 # prevent tasks from being garbage collected
 _background_tasks: Set[asyncio.Task] = set()
-
+print( "in \\bleak\\bleak\\backends\\scanner, finish running the imports" )
 
 class AdvertisementData(NamedTuple):
     """

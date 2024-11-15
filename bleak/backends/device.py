@@ -22,6 +22,7 @@ class BLEDevice:
     def __init__(
         self, address: str, name: Optional[str], details: Any, rssi: int, **kwargs
     ):
+        print( "in \\bleak\\bleak\\backends\\BLEDevice, __init__" )
         #: The Bluetooth address of the device on this machine (UUID on macOS).
         self.address = address
         #: The operating system name of the device (not necessarily the local name
