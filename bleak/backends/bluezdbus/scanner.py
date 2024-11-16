@@ -260,6 +260,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             props: The D-Bus object properties of the device.
         """
         print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, handle_advertising_data, enter" )
+        print( f"==>> props={props}" )
         _service_uuids = props.get("UUIDs", [])
 
         if not self.is_allowed_uuid(_service_uuids):
