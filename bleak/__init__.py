@@ -149,7 +149,7 @@ class BleakScanner:
         **kwargs,
     ) -> None:
     
-        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner enter" )
+        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner class initialize enter" )
         print( f"==>> service_uuids={service_uuids}" )
         
         print( "==>> calling \\bleak\\bleak\\backends\\scanner\\get_platform_scanner_backend_type" )
@@ -539,7 +539,7 @@ class BleakClient:
         backend: Optional[Type[BaseBleakClient]] = None,
         **kwargs,
     ) -> None:
-        print( "in \\bleak\\bleak\\__init__, BleakClient __init__, enter" )
+        print( "in \\bleak\\bleak\\__init__, __init__, BleakClient class init enter" )
         PlatformBleakClient = (
             get_platform_client_backend_type() if backend is None else backend
         )
@@ -558,6 +558,7 @@ class BleakClient:
             winrt=winrt,
             **kwargs,
         )
+        print( "in \\bleak\\bleak\\__init__, __init__, BleakClient class init exit" )
 
     # device info
 
