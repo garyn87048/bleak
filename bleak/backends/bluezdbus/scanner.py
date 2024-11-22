@@ -122,7 +122,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         bluez: BlueZScannerArgs,
         **kwargs,
     ):
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, enter" )
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, __init__, enter" )
         print( f"==>> service_uuid={service_uuids}" )
         print( f"==>> calling super(BleakScannerBlueZDBus init" )
         super(BleakScannerBlueZDBus, self).__init__(detection_callback, service_uuids)
@@ -148,7 +148,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             print( "self._filters['UUIDs']=%s" % self._filters["UUIDs"] )
 
         filters = kwargs.get("filters")
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, filters-1=%s" % filters )
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, __init__, filters-1=%s" % filters )
 
         if filters is None:
             print( "==>> filters was none" )
@@ -161,7 +161,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
                 stacklevel=2,
             )
 
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, filters-2=%s" % filters )
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, __init__, filters-2=%s" % filters )
         if filters is not None:
             self.set_scanning_filter(filters=filters)
 
@@ -175,11 +175,11 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         if self._scanning_mode == "passive" and not self._or_patterns:
             raise BleakError("passive scanning mode requires bluez or_patterns")
             
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, __init__, exit" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, __init__, exit" )
         
 
     async def start(self) -> None:
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, start, enter" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, start, enter" )
         manager = await get_global_bluez_manager()
 
         if self._adapter:
@@ -187,7 +187,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         else:
             adapter_path = manager.get_default_adapter()
 
-        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, start, adapter_path={adapter_path}, scan_mode={self._scanning_mode}" )
+        print( f"in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, start, adapter_path={adapter_path}, scan_mode={self._scanning_mode}" )
         
         self.seen_devices = {}
 
@@ -210,7 +210,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             )
 
     async def stop(self) -> None:
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, stop, enter" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, stop, enter" )
         if self._stop:
             # avoid reentrancy
             stop, self._stop = self._stop, None
@@ -230,7 +230,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             filters (dict): A dict of filters to be applied on discovery.
 
         """
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, set_scanning_filter, enter" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, set_scanning_filter, enter" )
         for k, v in kwargs.get("filters", {}).items():
             if k == "UUIDs":
                 self._filters[k] = Variant("as", v)
@@ -259,7 +259,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
             path: The D-Bus object path of the device.
             props: The D-Bus object properties of the device.
         """
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, handle_advertising_data, enter" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, handle_advertising_data, enter" )
         print( f"==>> props={props}" )
         _service_uuids = props.get("UUIDs", [])
 
@@ -301,7 +301,7 @@ class BleakScannerBlueZDBus(BaseBleakScanner):
         """
         Handles a device being removed from BlueZ.
         """
-        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, _handle_device_removed, enter" )
+        print( "in \\bleak\\bleak\\backends\\bluezdbus\\scanner, class BleakScannerBlueZDBus, _handle_device_removed, enter" )
         try:
             bdaddr = bdaddr_from_device_path(device_path)
             del self.seen_devices[bdaddr]

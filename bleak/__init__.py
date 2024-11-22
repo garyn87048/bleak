@@ -149,7 +149,7 @@ class BleakScanner:
         **kwargs,
     ) -> None:
     
-        print( f"in \\bleak\\bleak\\__init__, __init__, BleakScanner class initialize enter" )
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, __init__, enter" )
         print( f"==>> service_uuids={service_uuids}" )
         
         print( "==>> calling \\bleak\\bleak\\backends\\scanner\\get_platform_scanner_backend_type" )
@@ -157,7 +157,7 @@ class BleakScanner:
             get_platform_scanner_backend_type() if backend is None else backend
         )
 
-        print( f"in \\bleak\\bleak\\__init__, __init__, calling PlatformBleakScanner (the one in bluezdbux)" )
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, __init__, calling PlatformBleakScanner (the one in bluezdbus)" )
         self._backend = PlatformBleakScanner(
             detection_callback,
             service_uuids,
@@ -166,7 +166,7 @@ class BleakScanner:
             cb=cb,
             **kwargs,
         )
-        print( f"in \\bleak\\bleak\\__init__, __init__, exit" )
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, __init__, exit" )
 
     async def __aenter__(self) -> BleakScanner:
         await self._backend.start()
@@ -253,6 +253,7 @@ class BleakScanner:
 
         .. versionadded:: 0.21
         """
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, advertisement_data, enter" )
         devices = asyncio.Queue()
 
         unregister_callback = self._backend.register_detection_callback(
@@ -331,18 +332,18 @@ class BleakScanner:
         .. versionchanged:: 0.19
             Added ``return_adv`` parameter.
         """
-        print( "in \\bleak\\bleak\\__init__, discover, enter" )
-        print( "==>> this is BleakScanner.discover, calling 'scanner' here \\bleak\\bleak\\backends\\" )
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, discover, enter, calling scanner" )
+        print( "==>> heading here:  \\bleak\\bleak\\backends\\" )
         
         async with cls(**kwargs) as scanner:
             await asyncio.sleep(timeout)
-        print( "in \\bleak\\bleak\\__init__, discover, enter, returned from scanner" )
+        print( "in \\bleak\\bleak\\__init__, class BleakScanner, discover, returned from scanner" )
 
         if return_adv:
-            print( "in \\bleak\\bleak\\__init__, discover, return_adv" )
+            print( "in \\bleak\\bleak\\__init__, class BleakScanner, discover, return_adv" )
             return scanner.discovered_devices_and_advertisement_data
 
-        print( "in \\bleak\\bleak\\__init__, discover, return normal" )
+        print( "in \\bleak\\bleak\\__init__, class BleakScanner, discover, return normal" )
         return scanner.discovered_devices
 
     @property

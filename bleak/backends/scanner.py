@@ -135,11 +135,11 @@ class BaseBleakScanner(abc.ABC):
         detection_callback: Optional[AdvertisementDataCallback],
         service_uuids: Optional[List[str]],
     ):
-        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter, before super(BaseBleakScanner" )
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, __init__, enter, before super(BaseBleakScanner" )
 
         super(BaseBleakScanner, self).__init__()
 
-        print( "in \\bleak\\bleak\\backends\\scanner, __init__, enter, after super(BaseBleakScanner" )
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, __init__, after super(BaseBleakScanner" )
         
         self._ad_callbacks: Dict[
             Hashable, Callable[[BLEDevice, AdvertisementData], None]
@@ -158,7 +158,7 @@ class BaseBleakScanner(abc.ABC):
         print( f"==>> self._service_uuids={self._service_uuids}" )
 
         self.seen_devices = {}
-        print( "in \\bleak\\bleak\\backends\\scanner, __init__, exit" )
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, __init__, exit" )
 
     def register_detection_callback(
         self, callback: Optional[AdvertisementDataCallback]
@@ -176,6 +176,7 @@ class BaseBleakScanner(abc.ABC):
         Returns:
             A method that can be called to unregister the callback.
         """
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, register_detection_callback, enter" )
         error_text = "callback must be callable with 2 parameters"
 
         if not callable(callback):
@@ -203,6 +204,7 @@ class BaseBleakScanner(abc.ABC):
         def remove() -> None:
             self._ad_callbacks.pop(token, None)
 
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, register_detection_callback, exit" )
         return remove
 
     def is_allowed_uuid(self, service_uuids: Optional[List[str]]) -> bool:
@@ -224,6 +226,7 @@ class BaseBleakScanner(abc.ABC):
         # that don't match. So we need to do more filtering here to get the
         # expected behavior.
 
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, is_allowed_uuid, enter" )
         if not self._service_uuids:
             # if there is no filter, everything is allowed
             return True
@@ -231,14 +234,17 @@ class BaseBleakScanner(abc.ABC):
         if not service_uuids:
             # if there is a filter the advertisement data doesn't contain any
             # service UUIDs, filter it out
+            print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, is_allowed_uuid, no service uuids in ad, return false" )
             return False
 
         for uuid in service_uuids:
             if uuid in self._service_uuids:
                 # match was found, keep this advertisement
+                print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, is_allowed_uuid, service uuids match, keep ad, return true" )
                 return True
 
         # there were no matching service uuids, filter this one out
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, is_allowed_uuid, no matching service uuids, return false" )
         return False
 
     def call_detection_callbacks(
@@ -269,6 +275,7 @@ class BaseBleakScanner(abc.ABC):
         Returns:
             The updated device.
         """
+        print( "in \\bleak\\bleak\\backends\\scanner, class BaseBleakScanner, create_or_update_device, enter" )
 
         # for backwards compatibility, see https://github.com/hbldh/bleak/issues/1025
         metadata = dict(
@@ -320,7 +327,7 @@ def get_platform_scanner_backend_type() -> Type[BaseBleakScanner]:
     """
     Gets the platform-specific :class:`BaseBleakScanner` type.
     """
-    print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type" )
+    print( "in \\bleak\\bleak\\backends\\scanner, get_platform_scanner_backend_type (not a class), enter" )
 
     if os.environ.get("P4A_BOOTSTRAP") is not None:
         from bleak.backends.p4android.scanner import BleakScannerP4Android
