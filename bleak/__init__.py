@@ -466,9 +466,7 @@ class BleakScanner:
         async with cls(**kwargs) as scanner:
             try:
                 async with async_timeout(timeout):
-                    print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, done scanning" )
-                    print( f"==>> scanner={scanner}" )
-                    print( f"==>> len(scanner.advertisement_data())={len(scanner.advertisement_data())}" )
+                    print( f"in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, entering timeout loop, timeout={timeout}" )
                     async for bd, ad in scanner.advertisement_data():
                         print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, for bd & ad in advertisement data" )
                         print( f"==>> bd={bd}" )
