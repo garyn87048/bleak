@@ -8,7 +8,6 @@ __author__ = """Henrik Blidh"""
 __email__ = "henrik.blidh@gmail.com"
 
 print( "in \\bleak\\bleak\\__init__, start running code during import" )
-print( "==>> todo, need to track down all the things that are getting started in here" )
 import asyncio
 import functools
 import inspect
@@ -71,7 +70,6 @@ if TYPE_CHECKING:
     from .backends.corebluetooth.scanner import CBScannerArgs
     from .backends.winrt.client import WinRTClientArgs
 
-print( "==>> starting logging" )
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
 if bool(os.environ.get("BLEAK_LOGGING", False)):
@@ -85,7 +83,7 @@ if bool(os.environ.get("BLEAK_LOGGING", False)):
 
 # prevent tasks from being garbage collected
 _background_tasks: Set[asyncio.Task] = set()
-print( "in \\bleak\\bleak\\__init__, end running code during import" )
+print( "in \\bleak\\bleak\\__init__, end running code during import, logger was started in here" )
 
 
 class BleakScanner:
@@ -405,7 +403,7 @@ class BleakScanner:
             The ``BLEDevice`` sought or ``None`` if not detected.
 
         """
-        print( "in \\bleak\\bleak\\__init__, find_device_by_address" )
+        print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_address, enter" )
         device_identifier = device_identifier.lower()
         return await cls.find_device_by_filter(
             lambda d, ad: d.address.lower() == device_identifier,
@@ -429,7 +427,7 @@ class BleakScanner:
 
         .. versionadded:: 0.20
         """
-        print( "in \\bleak\\bleak\\__init__, find_device_by_name" )
+        print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_name, enter" )
         return await cls.find_device_by_filter(
             lambda d, ad: ad.local_name == name,
             timeout=timeout,
@@ -464,11 +462,16 @@ class BleakScanner:
             the timeout.
 
         """
+        print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, enter" )
         async with cls(**kwargs) as scanner:
             try:
                 async with async_timeout(timeout):
                     async for bd, ad in scanner.advertisement_data():
+                        print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, for bd & ad in advertisement data" )
+                        print( f"==>> bd={bd}" )
+                        print( f"==>> ad={ad}" )
                         if filterfunc(bd, ad):
+                            print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, passed filter funct, return bd" )
                             return bd
             except asyncio.TimeoutError:
                 return None
