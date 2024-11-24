@@ -262,6 +262,7 @@ class BleakScanner:
                 yield await devices.get()
         finally:
             unregister_callback()
+        print( f"in \\bleak\\bleak\\__init__, class BleakScanner, advertisement_data, exit" )
 
     class ExtraArgs(TypedDict, total=False):
         """
@@ -473,7 +474,7 @@ class BleakScanner:
                         print( f"==>> ad={ad}" )
                         if filterfunc(bd, ad):
                             print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, passed filter funct, return bd" )
-                            #return bd
+                            return bd
             except asyncio.TimeoutError:
                 return None
         print( "in \\bleak\\bleak\\__init__, class BleakScanner, find_device_by_filter, no matches, exit" )
